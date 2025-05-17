@@ -1,4 +1,3 @@
-import React from "react";
 import "./listItem.css";
 import { MAX_STARS } from "../../../constants";
 import { intToRoman } from "../../../util/intToRoman";
@@ -21,6 +20,7 @@ const MovieListItem = ({
       <div className="episode">EPISODE {episode}</div>
       <div className="title">{`EPISODE ${intToRoman(episode)} - ${title}`}</div>
       <div className="rating">
+        <span className="rating-text">{rating ? rating : "N/A"}</span>
         {Array.from({ length: MAX_STARS }).map((_, i) => {
           if (i + 1 <= Math.floor(rating)) {
             return (

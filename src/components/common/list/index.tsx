@@ -16,6 +16,7 @@ export default function CustomList() {
         ? error
         : data.results.map((movie) => (
             <MovieListItem
+              key={`${movie.title}-${movie.episode_id}`}
               title={movie.title}
               episode={movie.episode_id}
               releaseDate={movie.release_date}
