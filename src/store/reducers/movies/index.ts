@@ -13,7 +13,7 @@ export const fetchMovies = createAsyncThunk<
 >("movies/fetchMovies", async (_, thunkAPI) => {
   try {
     console.log("Fetching movies...");
-    const response = await fetch("/api/films/?format=json");
+    const response = await fetch("https://swapi.dev/api/films/?format=json");
     const data = await response.json();
     console.log("Movies fetched successfully:", data);
     return data as Pagination;
