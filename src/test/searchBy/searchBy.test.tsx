@@ -3,8 +3,6 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import SearchBy from "../../components/common/searchBy";
-import { setSearchQuery } from "../../store/reducers/searchSort";
-import * as reactRedux from "react-redux";
 
 const mockStore = configureStore([]);
 
@@ -50,7 +48,6 @@ describe("SearchBy component", () => {
         <SearchBy />
       </Provider>
     );
-    // Use Testing Library to query the SVG icon by class
     const icon = screen.getByTestId("search-icon");
     expect(icon).toBeInTheDocument();
   });
