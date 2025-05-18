@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/etraveli-assessment/static/css/main.a77abf9b.css",
-    "main.js": "/etraveli-assessment/static/js/main.83a4f1e4.js",
+    "main.js": "/etraveli-assessment/static/js/main.35c9a915.js",
     "static/js/453.6e3d4026.chunk.js": "/etraveli-assessment/static/js/453.6e3d4026.chunk.js",
     "index.html": "/etraveli-assessment/index.html",
     "main.a77abf9b.css.map": "/etraveli-assessment/static/css/main.a77abf9b.css.map",
-    "main.83a4f1e4.js.map": "/etraveli-assessment/static/js/main.83a4f1e4.js.map",
+    "main.35c9a915.js.map": "/etraveli-assessment/static/js/main.35c9a915.js.map",
     "453.6e3d4026.chunk.js.map": "/etraveli-assessment/static/js/453.6e3d4026.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a77abf9b.css",
-    "static/js/main.83a4f1e4.js"
+    "static/js/main.35c9a915.js"
   ]
 }
