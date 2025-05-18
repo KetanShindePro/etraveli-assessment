@@ -1,4 +1,4 @@
-import { Movie } from "./movie";
+import { Movie, OmdbMovie } from "./movie";
 
 export enum DataToPick {
   MOVIE = "movie",
@@ -8,7 +8,7 @@ export interface Pagination {
   count: number;
   next: number | null;
   previous: number | null;
-  results: Movie[];
+  results: (Movie & OmdbMovie)[];
 }
 
 export enum RequestStatus {

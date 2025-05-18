@@ -1,4 +1,5 @@
 import { Pagination, RequestStatus } from "./common";
+import { OmdbMovie } from "./movie";
 
 export interface MoviesState {
   data: Pagination;
@@ -8,7 +9,7 @@ export interface MoviesState {
 
 export interface DetailedViewState {
   status: RequestStatus;
-  data: any | null;
+  data: OmdbMovie | null;
   error: string | null | undefined;
 }
 

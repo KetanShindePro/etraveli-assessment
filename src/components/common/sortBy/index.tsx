@@ -4,7 +4,6 @@ import "./sortBy.css";
 export default function SortBy() {
   function renderSortByOptions() {
     return Object.entries(SortByOptions).map(([key, value]) => {
-      console.log("option: ", key, value);
       return (
         <option key={key} value={value}>
           {key.replace("_", " ")}
