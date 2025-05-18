@@ -24,12 +24,17 @@ export default function SortBy() {
   }
 
   return (
-    <select
-      className="sort-select"
-      defaultValue={sortByValue}
-      onChange={handleSortByChange}
-    >
-      {renderSortByOptions()}
-    </select>
+    <div className="sort-by-wrapper">
+      <label htmlFor="sort-select" className="sort-label">
+        Sort by:
+      </label>
+      <select
+        className="sort-select"
+        defaultValue={sortByValue}
+        onChange={handleSortByChange}
+      >
+        {renderSortByOptions()}
+      </select>
+    </div>
   );
 }
