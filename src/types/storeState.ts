@@ -1,28 +1,4 @@
-import { Pagination } from "./common";
-
-export interface Movie {
-  title: string;
-  episode_id: number;
-  opening_crawl: string;
-  director: string;
-  producer: string;
-  release_date: string;
-  characters: string[];
-  planets: string[];
-  starships: string[];
-  vehicles: string[];
-  species: string[];
-  created: string;
-  edited: string;
-  url: string;
-}
-
-export enum RequestStatus {
-  IDLE = "idle",
-  LOADING = "loading",
-  SUCCEEDED = "succeeded",
-  FAILED = "failed",
-}
+import { Pagination, RequestStatus } from "./common";
 
 export interface MoviesState {
   data: Pagination;
@@ -30,6 +6,20 @@ export interface MoviesState {
   error: string | null | undefined;
 }
 
+export interface DetailedViewState {
+  status: RequestStatus;
+  data: any | null;
+  error: string | null | undefined;
+}
+
+export interface SearchSortState {
+  sortBy: string | undefined;
+  sortOrder: string | undefined;
+  searchQuery: string | undefined;
+}
+
 export interface StoreState {
   movies: MoviesState;
+  searchSort: SearchSortState;
+  detailedView: DetailedViewState;
 }

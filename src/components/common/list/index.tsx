@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
-import { RequestStatus, StoreState } from "../../../types/storeState";
+import { StoreState } from "../../../types/storeState";
 import MovieListItem from "../listItem";
 import "./list.css";
+import { RequestStatus } from "../../../types/common";
 
 export default function CustomList() {
   const { data, status, error } = useSelector(

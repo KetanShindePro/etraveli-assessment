@@ -1,6 +1,7 @@
 .movie-list-container {
   width: 50%;
-  height: 86vh;
-  border-right: 1px solid rgb(176, 105, 105);
+  height: 80vh;
+  border-right: 1px solid rgb(235, 199, 199);
   padding: 0 1rem;
+  overflow: scroll;
 }

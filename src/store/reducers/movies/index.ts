@@ -3,8 +3,19 @@ import {
   createAsyncThunk,
   createSlice,
 } from "@reduxjs/toolkit";
-import { MoviesState, RequestStatus } from "../../../types/storeState";
-import { Pagination } from "../../../types/common";
+import { MoviesState } from "../../../types/storeState";
+import { Pagination, RequestStatus } from "../../../types/common";
+
+const initialState: MoviesState = {
+  status: RequestStatus.IDLE,
+  data: {
+    count: 0,
+    next: null,
+    previous: null,
+    results: [],
+  },
+  error: null,
+};
 
 export const fetchMovies = createAsyncThunk<
   Pagination,
@@ -24,16 +35,7 @@ export const fetchMovies = createAsyncThunk<
 
 export const moviesSlice = createSlice({
   name: "movies",
-  initialState: {
-    status: RequestStatus.IDLE,
-    data: {
-      count: 0,
-      next: null,
-      previous: null,
-      results: [],
-    },
-    error: null,
-  } as MoviesState,
+  initialState: initialState,
   reducers: {},
   extraReducers: (builder: ActionReducerMapBuilder<MoviesState>) => {
     builder.addCase(fetchMovies.pending, (state, action) => {
