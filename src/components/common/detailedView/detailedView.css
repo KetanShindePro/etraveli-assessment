@@ -65,6 +65,15 @@
   margin-bottom: 1rem;
 }
 
+.detailed-view-source {
+  background: #eaf3fa;
+  color: #3578b8;
+  border-radius: 16px;
+  padding: 2px 12px;
+  font-size: 0.95rem;
+  border: 1px solid #b5d0ee;
+}
+
 .detailed-view-close-btn {
   position: absolute;
   top: 0.25rem;

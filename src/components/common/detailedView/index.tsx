@@ -22,6 +22,12 @@ export default function DetailedView() {
     );
   }
 
+  const title =
+    detailedViewData.Title || detailedViewData.title || "No title available";
+  const description =
+    detailedViewData.opening_crawl || detailedViewData.Plot || "";
+  const director = detailedViewData.director || detailedViewData.Director || "";
+
   let avgRating = 0;
   if (detailedViewData.imdbRating) {
     const rating = Number(detailedViewData.imdbRating);
@@ -41,24 +47,18 @@ export default function DetailedView() {
       >
         ×
       </button>
-      <div className="detailed-view-header">
-        {detailedViewData.Title && detailedViewData.Year
-          ? `${detailedViewData.Title}`
-          : detailedViewData.Title}
-      </div>
+      <div className="detailed-view-header">{title}</div>
       <div className="detailed-view-content">
         <img
           className="detailed-view-poster"
           src={detailedViewData.Poster}
-          alt={detailedViewData.Title}
+          alt={title}
         />
         <div className="detailed-view-info">
-          <div className="detailed-view-plot">{detailedViewData.Plot}</div>
+          <div className="detailed-view-plot">{description}</div>
         </div>
       </div>
-      <div className="detailed-view-director">
-        Directed by: {detailedViewData.Director}
-      </div>
+      <div className="detailed-view-director">Directed by: {director}</div>
       <div className="detailed-view-rating">
         Average rating: <StarRating rating={avgRating} />
       </div>
