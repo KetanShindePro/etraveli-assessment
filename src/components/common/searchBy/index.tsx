@@ -1,4 +1,4 @@
-import React, { useState, useDeferredValue, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./searchBy.css";
 import { FaSearch } from "react-icons/fa";
@@ -7,23 +7,24 @@ import {
   selectSearchQuery,
   setSearchQuery,
 } from "../../../store/reducers/searchSort";
+import { useDebounce } from "../../../hooks/useDebounce";
 
 export default function SearchBy() {
   const dispatch = useDispatch<AppDispatch>();
   const searchByTitle = useSelector(selectSearchQuery);
 
   const [inputValue, setInputValue] = useState(searchByTitle ?? "");
-  const deferredValue = useDeferredValue(inputValue);
+  const debouncedValue = useDebounce(inputValue, 300);
 
   function handleSearchChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value);
   }
 
   useEffect(() => {
-    if (deferredValue !== searchByTitle) {
-      dispatch(setSearchQuery(deferredValue));
+    if (debouncedValue !== searchByTitle) {
+      dispatch(setSearchQuery(debouncedValue));
     }
-  }, [deferredValue, dispatch, searchByTitle]);
+  }, [debouncedValue, dispatch, searchByTitle]);
 
   return (
     <div className="search-input-wrapper">

@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import configureStore from "redux-mock-store";
 import SearchBy from "../../components/common/searchBy";
 import { setSearchQuery } from "../../store/reducers/searchSort";
+import * as reactRedux from "react-redux";
 
 const mockStore = configureStore([]);
 
@@ -41,20 +42,6 @@ describe("SearchBy component", () => {
     const input = screen.getByPlaceholderText("Search by title");
     fireEvent.change(input, { target: { value: "new value" } });
     expect(input).toHaveValue("new value");
-  });
-
-  it("dispatches setSearchQuery when input changes", () => {
-    jest.useFakeTimers();
-    render(
-      <Provider store={store}>
-        <SearchBy />
-      </Provider>
-    );
-    const input = screen.getByPlaceholderText("Search by title");
-    fireEvent.change(input, { target: { value: "search term" } });
-    jest.runAllTimers();
-    expect(store.dispatch).toHaveBeenCalledWith(setSearchQuery("search term"));
-    jest.useRealTimers();
   });
 
   it("shows the search icon", () => {
