@@ -1,5 +1,4 @@
 import "./listItem.css";
-import { MAX_STARS } from "../../../constants";
 import { intToRoman } from "../../../util/intToRoman";
 import StarRating from "../starRating";
 import { useDispatch } from "react-redux";

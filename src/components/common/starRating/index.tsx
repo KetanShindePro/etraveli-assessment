@@ -13,7 +13,7 @@ export default function StarRating({ rating = 0 }: StarRatingProps) {
         {Array.from({ length: MAX_STARS }).map((_, i) => {
           if (i + 1 <= Math.floor(rating)) {
             return (
-              <span key={i} className="star filled">
+              <span key={i} className="star filled" data-testid="filled-star">
                 ★
               </span>
             );
@@ -23,13 +23,17 @@ export default function StarRating({ rating = 0 }: StarRatingProps) {
             i === Math.floor(rating)
           ) {
             return (
-              <span key={i} className="star half-filled">
+              <span
+                key={i}
+                className="star half-filled"
+                data-testid="half-filled-star"
+              >
                 ★
               </span>
             );
           } else {
             return (
-              <span key={i} className="star">
+              <span key={i} className="star" data-testid="star">
                 ★
               </span>
             );
@@ -44,7 +48,9 @@ export default function StarRating({ rating = 0 }: StarRatingProps) {
       {rating ? (
         renderStars()
       ) : (
-        <span className="no-rating">No Ratings Found</span>
+        <span className="no-rating" data-testid="no-rating">
+          No Ratings Found
+        </span>
       )}
     </div>
   );

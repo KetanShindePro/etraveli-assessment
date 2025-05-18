@@ -27,7 +27,7 @@ export default function SearchBy() {
 
   return (
     <div className="search-input-wrapper">
-      <FaSearch className="search-icon" />
+      <FaSearch className="search-icon" data-testid="search-icon" />
       <input
         type="text"
         className="search-input"
