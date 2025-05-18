@@ -14,14 +14,10 @@ export default function CustomList() {
         : error
         ? error
         : data.results.map((movie) => {
-            const rating = parseInt(movie.imdbRating);
             return (
               <MovieListItem
                 key={`${movie.title}-${movie.episode_id}`}
-                title={movie.title}
-                episode={movie.episode_id}
-                releaseDate={movie.release_date}
-                rating={isNaN(rating) ? 0 : rating}
+                movie={movie}
               />
             );
           })}

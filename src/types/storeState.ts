@@ -8,9 +8,7 @@ export interface MoviesState {
 }
 
 export interface DetailedViewState {
-  status: RequestStatus;
   data: OmdbMovie | null;
-  error: string | null | undefined;
 }
 
 export interface SearchSortState {

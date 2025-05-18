@@ -3,9 +3,10 @@ import {
   createAsyncThunk,
   createSlice,
 } from "@reduxjs/toolkit";
-import { MoviesState } from "../../../types/storeState";
+import { MoviesState, StoreState } from "../../../types/storeState";
 import { Pagination, RequestStatus } from "../../../types/common";
 import { OmdbMovie } from "../../../types/movie";
+import { SortByOptions, SortOrder } from "../../../types/sortBy";
 
 const initialState: MoviesState = {
   status: RequestStatus.IDLE,
@@ -96,9 +97,51 @@ export const moviesSlice = createSlice({
 
 export const moviesReducer = moviesSlice.reducer;
 
-export const selectMovies = (state: { movies: MoviesState }) => state.movies;
+export const selectMovies = (state: StoreState) => {
+  const { sortBy, sortOrder } = state.searchSort;
 
-export const selectMovieByTitle = (
-  state: { movies: MoviesState },
-  title: string
-) => state.movies.data.results.find((movie) => movie.Title.includes(title));
+  let sortedResults = [...state.movies.data.results];
+
+  if (sortBy === SortByOptions.TITLE) {
+    sortedResults.sort((a, b) => a.title.localeCompare(b.title));
+  } else if (sortBy === SortByOptions.RELEASE_DATE) {
+    sortedResults.sort((a, b) => {
+      const dateA = new Date(a.release_date);
+      const dateB = new Date(b.release_date);
+      return sortOrder === SortOrder.ASCENDING
+        ? dateA.getTime() - dateB.getTime()
+        : dateB.getTime() - dateA.getTime();
+    });
+  } else if (sortBy === SortByOptions.RATING) {
+    sortedResults.sort((a, b) => {
+      const tryRatingA = Number(a.imdbRating);
+      const tryRatingB = Number(b.imdbRating);
+      const ratingA = isNaN(tryRatingA) ? 0 : tryRatingA;
+      const ratingB = isNaN(tryRatingB) ? 0 : tryRatingB;
+      return sortOrder === SortOrder.ASCENDING
+        ? ratingA - ratingB
+        : ratingB - ratingA;
+    });
+  } else if (sortBy === SortByOptions.EPISODE) {
+    sortedResults.sort((a, b) => {
+      const tryEpisodeA = Number(a.episode_id);
+      const tryEpisodeB = Number(b.episode_id);
+      const episodeA = isNaN(tryEpisodeA) ? 0 : tryEpisodeA;
+      const episodeB = isNaN(tryEpisodeB) ? 0 : tryEpisodeB;
+      return sortOrder === SortOrder.ASCENDING
+        ? episodeA - episodeB
+        : episodeB - episodeA;
+    });
+  }
+
+  return {
+    ...state.movies,
+    data: {
+      ...state.movies.data,
+      results: sortedResults,
+    },
+  };
+};
+
+export const selectMovieByTitle = (state: StoreState, title: string) =>
+  state.movies.data.results.find((movie) => movie.Title.includes(title));

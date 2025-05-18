@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { StoreState } from "../../../types/storeState";
+import { SortByOptions, SortOrder } from "../../../types/sortBy";
 
 const initialState = {
-  sortBy: undefined,
-  sortOrder: undefined,
+  sortBy: SortByOptions.EPISODE,
+  sortOrder: SortOrder.ASCENDING,
   searchQuery: undefined,
 };
 

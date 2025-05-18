@@ -20,7 +20,7 @@ export interface OmdbRating {
   Value: string;
 }
 
-export interface OmdbMovie {
+export interface OmdbMovie extends Movie {
   Title: string;
   Year: string;
   Rated: string;

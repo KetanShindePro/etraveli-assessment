@@ -2,26 +2,32 @@ import "./listItem.css";
 import { MAX_STARS } from "../../../constants";
 import { intToRoman } from "../../../util/intToRoman";
 import StarRating from "../starRating";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../store";
+import { setDetailedViewData } from "../../../store/reducers/detailedView/detailedView";
+import { OmdbMovie } from "../../../types/movie";
 
 interface MovieListItemProps {
-  episode: number;
-  title: string;
-  releaseDate: string;
-  rating?: number;
+  movie: OmdbMovie;
 }
 
-const MovieListItem = ({
-  episode,
-  title,
-  releaseDate,
-  rating = 2.5,
-}: MovieListItemProps) => {
+const MovieListItem = ({ movie }: MovieListItemProps) => {
+  const { title, episode_id, imdbRating, release_date } = movie;
+  const dispatch = useDispatch<AppDispatch>();
+  const rating = Number(imdbRating);
+  const ratingNumber = isNaN(rating) ? 0 : rating;
+
   return (
-    <div className="list-item">
-      <div className="episode">EPISODE {episode}</div>
-      <div className="title">{`EPISODE ${intToRoman(episode)} - ${title}`}</div>
-      <StarRating rating={rating} />
-      <div className="date">{releaseDate}</div>
+    <div
+      className="list-item"
+      onClick={() => dispatch(setDetailedViewData(movie))}
+    >
+      <div className="episode">EPISODE {episode_id}</div>
+      <div className="title">{`EPISODE ${intToRoman(
+        episode_id
+      )} - ${title}`}</div>
+      <StarRating rating={ratingNumber} />
+      <div className="date">{release_date}</div>
     </div>
   );
 };
