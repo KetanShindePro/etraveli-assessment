@@ -9,18 +9,24 @@ export default function CustomList() {
 
   return (
     <div className="movie-list-container">
-      {status === RequestStatus.LOADING
-        ? "Loading..."
-        : error
-        ? error
-        : data.results.map((movie) => {
+      {data.results.length ? (
+        status === RequestStatus.LOADING ? (
+          "Loading..."
+        ) : error ? (
+          error
+        ) : (
+          data.results.map((movie) => {
             return (
               <MovieListItem
                 key={`${movie.title}-${movie.episode_id}`}
                 movie={movie}
               />
             );
-          })}
+          })
+        )
+      ) : (
+        <div className="no-results">No results found</div>
+      )}
     </div>
   );
 }

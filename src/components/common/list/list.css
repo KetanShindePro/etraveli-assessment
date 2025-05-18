@@ -5,3 +5,17 @@
   padding: 0 1rem;
   overflow: scroll;
 }
+
+.no-results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .movie-list-container {
+    width: 100%;
+  }
+}

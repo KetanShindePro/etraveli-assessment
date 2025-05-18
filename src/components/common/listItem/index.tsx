@@ -22,10 +22,12 @@ const MovieListItem = ({ movie }: MovieListItemProps) => {
       className="list-item"
       onClick={() => dispatch(setDetailedViewData(movie))}
     >
-      <div className="episode">EPISODE {episode_id}</div>
-      <div className="title">{`EPISODE ${intToRoman(
-        episode_id
-      )} - ${title}`}</div>
+      <div className="title-and-episode">
+        <div className="episode">EPISODE {episode_id}</div>
+        <div className="title">{`EPISODE ${intToRoman(
+          episode_id
+        )} - ${title}`}</div>
+      </div>
       <StarRating rating={ratingNumber} />
       <div className="date">{release_date}</div>
     </div>

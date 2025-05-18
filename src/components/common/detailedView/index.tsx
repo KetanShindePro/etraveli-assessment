@@ -1,10 +1,15 @@
-import { useSelector } from "react-redux";
-import { selectDetailedViewData } from "../../../store/reducers/detailedView/detailedView";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  selectDetailedViewData,
+  setDetailedViewData,
+} from "../../../store/reducers/detailedView/detailedView";
 import { OmdbMovie } from "../../../types/movie";
 import "./detailedView.css";
 import StarRating from "../starRating";
+import { AppDispatch } from "../../../store";
 
 export default function DetailedView() {
+  const dispatch = useDispatch<AppDispatch>();
   const detailedViewData: OmdbMovie | null = useSelector(
     selectDetailedViewData
   );
@@ -26,7 +31,16 @@ export default function DetailedView() {
   const sources = detailedViewData.Ratings || [];
 
   return (
-    <div className="detailed-view-container">
+    <div
+      className="detailed-view-container"
+      style={detailedViewData ? { display: "flex" } : undefined}
+    >
+      <button
+        className="detailed-view-close-btn"
+        onClick={() => dispatch(setDetailedViewData(null))}
+      >
+        ×
+      </button>
       <div className="detailed-view-header">
         {detailedViewData.Title && detailedViewData.Year
           ? `${detailedViewData.Title}`

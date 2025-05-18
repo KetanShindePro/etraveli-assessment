@@ -8,6 +8,15 @@
   text-align: left;
 }
 
+.list-item:nth-child(odd) {
+  background-color: #f3f1f1;
+}
+
+.title-and-episode {
+  display: flex;
+  flex: 1;
+}
+
 .episode,
 .title,
 .date {
@@ -18,4 +27,21 @@
 .title {
   flex: 1;
   padding: 0 1rem 0 2rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .list-item {
+    width: 60vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .list-item {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .title-and-episode {
+    flex-direction: row;
+  }
 }
