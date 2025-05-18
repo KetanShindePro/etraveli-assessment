@@ -41,10 +41,8 @@ export const fetchMovies = createAsyncThunk<
   { rejectValue: string }
 >("movies/fetchMovies", async (_, thunkAPI) => {
   try {
-    console.log("Fetching movies...");
     const response = await fetch("https://swapi.py4e.com/api/films");
     const data = await response.json();
-    console.log("Movies fetched successfully:", data);
 
     if (data.results) {
       data.results.forEach((movie: any) => {
@@ -97,13 +95,23 @@ export const moviesSlice = createSlice({
 
 export const moviesReducer = moviesSlice.reducer;
 
-export const selectMovies = (state: StoreState) => {
-  const { sortBy, sortOrder } = state.searchSort;
+export const selectSortedFilteredMovies = (state: StoreState) => {
+  const { sortBy, sortOrder, searchQuery } = state.searchSort;
 
-  let sortedResults = [...state.movies.data.results];
+  let filteredResults = state.movies.data.results.filter((movie) => {
+    if (!searchQuery) return true;
+    const movieTitle = movie.title || movie.Title || "";
+    return movieTitle.toLowerCase().includes(searchQuery.toLowerCase());
+  });
+
+  let sortedResults = [...filteredResults];
 
   if (sortBy === SortByOptions.TITLE) {
-    sortedResults.sort((a, b) => a.title.localeCompare(b.title));
+    sortedResults.sort((a, b) => {
+      const titleA = (a.title || a.Title || "").toLowerCase();
+      const titleB = (b.title || b.Title || "").toLowerCase();
+      return titleA.localeCompare(titleB);
+    });
   } else if (sortBy === SortByOptions.RELEASE_DATE) {
     sortedResults.sort((a, b) => {
       const dateA = new Date(a.release_date);

@@ -11,7 +11,7 @@ export default function DetailedView() {
 
   if (!detailedViewData) {
     return (
-      <div className="detailed-view-container">
+      <div className="detailed-view-container nothing-to-show">
         Please select the movie from the list to view full details.
       </div>
     );
