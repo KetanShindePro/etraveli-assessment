@@ -21,7 +21,6 @@ export default function SearchBy() {
 
   useEffect(() => {
     if (deferredValue !== searchByTitle) {
-      console.log("dispatching search query");
       dispatch(setSearchQuery(deferredValue));
     }
   }, [deferredValue, dispatch, searchByTitle]);
